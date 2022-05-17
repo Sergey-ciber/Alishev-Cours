@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans  xmlns="http://www.springframework.org/schema/beans"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:context="http://www.springframework.org/schema/context"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
@@ -10,29 +10,34 @@
     <context:property-placeholder location="musicPlayer.properties"/>
 
     <bean id="rockMusicBean"
-          class="alishevCours.RockMusic">
-    </bean>
-    <bean id="classicalMusicBean"
-          class="alishevCours.ClassicalMusic">
-    </bean>
-    <bean id="folcMusicBean"
-          class="alishevCours.FolcMusic">
-    </bean>
-
-    <bean
-        id="musicPlayer"
-        class="alishevCours.MusicPlayer">
-        <property name="music" ref="rockMusicBean"/>
-        <property name="name" value="${musicPlayer.name}"/>
-        <property name="volume" value="${musicPlayer.value}"/>
-        <property name="musicList">
-            <list>
-                <ref bean="rockMusicBean" />
-                <ref bean="classicalMusicBean" />
-                <ref bean="folcMusicBean" />
-            </list>
-        </property>
+          class="alishevCours.RockMusic"
+          scope="prototype"
+          init-method="doMyInit"
+          destroy-method="doMyDestroy"
+          factory-method="getRockMusic">
 
     </bean>
+    <!--    <bean id="classicalMusicBean"-->
+    <!--          class="alishevCours.ClassicalMusic">-->
+    <!--    </bean>-->
+    <!--    <bean id="folcMusicBean"-->
+    <!--          class="alishevCours.FolcMusic">-->
+    <!--    </bean>-->
+
+    <!--    <bean-->
+    <!--        id="musicPlayer"-->
+    <!--        class="alishevCours.MusicPlayer"-->
+    <!--        scope="prototype">-->
+    <!--        <property name="music" ref="rockMusicBean"/>-->
+    <!--        <property name="name" value="${musicPlayer.name}"/>-->
+    <!--        <property name="volume" value="${musicPlayer.volume}"/>-->
+    <!--        <property name="musicList">-->
+    <!--            <list>-->
+    <!--                <ref bean="rockMusicBean" />-->
+    <!--                <ref bean="classicalMusicBean" />-->
+    <!--                <ref bean="folcMusicBean" />-->
+    <!--            </list>-->
+    <!--        </property>-->
+    <!--    </bean>-->
 
 </beans>
